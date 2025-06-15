@@ -1,4 +1,3 @@
-cat k8s-prepare-node.sh
 #!/bin/bash
 
 # This script prepares Ubuntu 22.04 nodes for Kubernetes deployment with kubeadm
