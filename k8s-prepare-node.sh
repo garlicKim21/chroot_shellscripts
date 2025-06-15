@@ -9,8 +9,8 @@ set -e
 # Variables
 SWAP_FILE="/swap.img"
 CONTAINERD_VERSION="1.7.23"
-KUBE_ADMIN_USER="kube-admin"
-KUBE_ADMIN_PASSWORD="admin123"  # Change this to a secure password
+KUBE_ADMIN_USER="ubuntu"
+KUBE_ADMIN_PASSWORD="ubuntu123"
 
 # Define hosts entries as an array
 HOSTS_ENTRIES=(
