@@ -21,7 +21,7 @@ chroot 환경을 설정할 때 필요한 명령어와 그에 따른 모든 의�
 1.  **저장소 복제(Clone)**
 
     ```bash
-    git clone git@github.com-personal:garlicKim21/chroot_shellscripts.git
+    git clone https://github.com/garlicKim21/chroot_shellscripts.git
     cd chroot_shellscripts
     ```
 
