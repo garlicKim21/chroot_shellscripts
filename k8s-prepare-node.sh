@@ -38,8 +38,8 @@ echo "Creating kube-admin user..."
 if ! id "$KUBE_ADMIN_USER" &>/dev/null; then
     useradd -m -s /bin/bash "$KUBE_ADMIN_USER"
     echo "$KUBE_ADMIN_USER:$KUBE_ADMIN_PASSWORD" | chpasswd
-    echo "$KUBE_ADMIN_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/kube-admin
-    chmod 0440 /etc/sudoers.d/kube-admin
+    echo "$KUBE_ADMIN_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ubuntu
+    chmod 0440 /etc/sudoers.d/ubuntu
     echo "User $KUBE_ADMIN_USER created with sudo privileges"
 else
     echo "User $KUBE_ADMIN_USER already exists"
