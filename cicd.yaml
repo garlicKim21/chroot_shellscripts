@@ -1,0 +1,37 @@
+name: Build and Deploy to K8s
+
+on:
+  push:
+    branches:
+      - main # main 브랜치에 push될 때마다 실행
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        # 태그: <도커ID>/<저장소이름>:<커밋해시앞7자리>
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-final-app:${{ github.sha }}
+
+    - name: Set up Kubeconfig
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+    - name: Deploy to Kubernetes by setting new image
+      run: |
+        kubectl set image deployment/cicd-nginx-deployment nginx=${{ secrets.DOCKERHUB_USERNAME }}/my-final-app:${{ github.sha }}
